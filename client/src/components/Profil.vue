@@ -4,9 +4,6 @@ import { ref, onMounted } from 'vue';
 // State untuk mengontrol animasi saat mounted
 const showProfile = ref(false);
 
-// Placeholder image (Ganti URL ini dengan foto asli Anda nanti)
-const profileImage = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80";
-
 // Data Social Media
 const socialLinks = [
     { name: 'Instagram', icon: '/logos/ig.png', url: 'https://instagram.com/rafi.febrian.suprapto' },
@@ -31,7 +28,7 @@ onMounted(() => {
 
                         <div class="col-md-4 text-center mb-4 mb-md-0">
                             <div class="image-container">
-                                <img :src="profileImage" alt="Profile Picture" class="profile-img img-fluid">
+                                <img src="../assets/img/fotorafi.jpg" alt="Profile Picture" class="profile-img img-fluid">
                             </div>
                         </div>
 
