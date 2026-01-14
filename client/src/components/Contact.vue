@@ -19,7 +19,7 @@ const handleSubmit = async () => {
         isSubmitting.value = true;
 
         // Proses kirim data ke API
-        await fetch('http://localhost:8080/api/message/send', {
+        await fetch('https://rafi-portofolio.onrender.com/api/message/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

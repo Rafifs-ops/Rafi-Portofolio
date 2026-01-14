@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 // Data Sertifikat
 const certificates = ref([]);
 onMounted(async () => {
-    await fetch('http://localhost:8080/api/data/certifications').then(e => e.json()).then(data => certificates.value = data)
+    await fetch('https://rafi-portofolio.onrender.com/api/data/certifications').then(e => e.json()).then(data => certificates.value = data)
 });
 
 // State untuk Modal

@@ -8,7 +8,7 @@ const showProjects = ref(false);
 const projects = ref([]);
 onMounted(async () => {
     showProjects.value = true;
-    await fetch('http://localhost:8080/api/data/projects').then(e => e.json()).then(data => projects.value = data)
+    await fetch('https://rafi-portofolio.onrender.com/api/data/projects').then(e => e.json()).then(data => projects.value = data)
 });
 
 // Router 

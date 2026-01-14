@@ -13,7 +13,7 @@ const error = ref(null); // Tambahkan error state
 // Mengambil data
 onMounted(async () => {
     try {
-        const response = await fetch("http://localhost:8080/api/data/projects");
+        const response = await fetch("https://rafi-portofolio.onrender.com/api/data/projects");
         if (!response.ok) throw new Error("Gagal mengambil data");
         const data = await response.json();
         projects.value = data;

@@ -6,7 +6,7 @@ const showSkills = ref(false);
 // Data Skills
 const skills = ref([]);
 onMounted(async () => {
-    await fetch('http://localhost:8080/api/data/skills').then(e => e.json()).then(data => skills.value = data)
+    await fetch('https://rafi-portofolio.onrender.com/api/data/skills').then(e => e.json()).then(data => skills.value = data)
     showSkills.value = true;
 });
 </script>
