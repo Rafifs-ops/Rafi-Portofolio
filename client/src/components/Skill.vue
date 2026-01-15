@@ -2,12 +2,24 @@
 import { ref, onMounted } from 'vue';
 
 const showSkills = ref(false);
+const isLoading = ref(false);
 
 // Data Skills
 const skills = ref([]);
 onMounted(async () => {
-    await fetch('https://rafi-portofolio.onrender.com/api/data/skills').then(e => e.json()).then(data => skills.value = data)
-    showSkills.value = true;
+    isLoading.value = true; // Set loading true saat mulai
+    try {
+        await fetch('https://rafi-portofolio.onrender.com/api/data/skills').then(e => e.json()).then(data => skills.value = data);
+
+        // Trigger animasi muncul setelah data siap
+        setTimeout(() => {
+            showSkills.value = true;
+        }, 100);
+    } catch (error) {
+        console.error("Gagal mengambil data skill:", error);
+    } finally {
+        isLoading.value = false; // Matikan loading setelah selesai (sukses/gagal)
+    }
 });
 </script>
 
@@ -15,14 +27,23 @@ onMounted(async () => {
     <section id="skills" class="skills-wrapper py-5">
         <div class="container">
 
-            <div class="row mb-5 text-center" v-if="showSkills">
+            <div class="row mb-5 text-center">
                 <div class="col-12">
                     <h2 class="section-title fw-bold text-white">Skills</h2>
                     <div class="divider mx-auto"></div>
                 </div>
             </div>
 
-            <div class="row justify-content-center g-4">
+            <div v-if="isLoading" class="row justify-content-center my-5">
+                <div class="col-auto text-center">
+                    <div class="cyber-spinner spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
+                </div>
+            </div>
+
+            <div v-else class="row justify-content-center g-4">
                 <TransitionGroup name="staggered-fade" appear>
                     <div v-for="(skill, index) in skills" :key="skill.name" v-show="showSkills"
                         class="col-6 col-md-4 col-lg-3" :style="{ transitionDelay: `${index * 100}ms` }">
@@ -150,6 +171,20 @@ onMounted(async () => {
 
 .staggered-fade-enter-active {
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cyber-spinner {
+    width: 3rem;
+    height: 3rem;
+    color: #3795BD;
+    /* Warna biru sesuai tema */
+    border-width: 0.25em;
+    filter: drop-shadow(0 0 5px #3795BD);
+    /* Efek glow */
+}
+
+.tracking-wider {
+    letter-spacing: 2px;
 }
 
 /* Responsiveness untuk Layar Kecil (Mobile) */

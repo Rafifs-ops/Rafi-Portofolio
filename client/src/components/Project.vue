@@ -3,12 +3,25 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const showProjects = ref(false);
+const isLoading = ref(false);
 
 // Data Project
 const projects = ref([]);
 onMounted(async () => {
-    showProjects.value = true;
-    await fetch('https://rafi-portofolio.onrender.com/api/data/projects').then(e => e.json()).then(data => projects.value = data)
+    isLoading.value = true; // Set loading true saat mulai
+    try {
+        const response = await fetch('https://rafi-portofolio.onrender.com/api/data/projects');
+        projects.value = await response.json();
+
+        // Trigger animasi muncul setelah data siap
+        setTimeout(() => {
+            showProjects.value = true;
+        }, 100);
+    } catch (error) {
+        console.error("Gagal mengambil data project:", error);
+    } finally {
+        isLoading.value = false; // Matikan loading setelah selesai (sukses/gagal)
+    }
 });
 
 // Router 
@@ -29,7 +42,16 @@ function detailProject(id) {
                 </div>
             </div>
 
-            <div class="row g-4 justify-content-center">
+            <div v-if="isLoading" class="row justify-content-center my-5">
+                <div class="col-auto text-center">
+                    <div class="cyber-spinner spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
+                </div>
+            </div>
+
+            <div v-else class="row g-4 justify-content-center">
                 <TransitionGroup name="card-pop">
                     <div class="col-md-6 col-lg-4" v-for="(project, index) in projects" :key="project.id"
                         v-show="showProjects" :style="{ '--delay': index * 0.2 + 's' }">
@@ -217,5 +239,19 @@ function detailProject(id) {
 
 .btn-detail:active {
     transform: translateY(0);
+}
+
+.cyber-spinner {
+    width: 3rem;
+    height: 3rem;
+    color: #3795BD;
+    /* Warna biru sesuai tema */
+    border-width: 0.25em;
+    filter: drop-shadow(0 0 5px #3795BD);
+    /* Efek glow */
+}
+
+.tracking-wider {
+    letter-spacing: 2px;
 }
 </style>

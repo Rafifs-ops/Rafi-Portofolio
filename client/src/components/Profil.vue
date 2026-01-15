@@ -8,7 +8,7 @@ const showProfile = ref(false);
 const socialLinks = [
     { name: 'Instagram', icon: '/logos/ig.png', url: 'https://instagram.com/rafi.febrian.suprapto' },
     { name: 'WhatsApp', icon: '/logos/wa.png', url: 'https://wa.me/62895383151668' },
-    { name: 'LinkedIn', icon: '/logos/linkedin.png', url: 'https://linkedin.com/in/username' }
+    { name: 'LinkedIn', icon: '/logos/linkedin.png', url: 'https://www.linkedin.com/in/rafi-febrian-suprapto-8a9a42312' }
 ];
 
 onMounted(() => {

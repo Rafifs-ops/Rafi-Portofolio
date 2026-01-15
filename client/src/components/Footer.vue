@@ -53,9 +53,9 @@ onUnmounted(() => {
 
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="social-box">
-                        <a href="https://instagram.com/rafi.febrian.suprapto" class="social-icon"><img src="../../public/logos/ig.png" class="icon-img"></a>
-                        <a href="https://wa.me/62895383151668" class="social-icon"><img src="../../public/logos/wa.png" class="icon-img"></a>
-                        <a href="https://linkedin.com/in/username" class="social-icon"><img src="../../public/logos/linkedin.png" class="icon-img"></a>
+                        <a href="https://instagram.com/rafi.febrian.suprapto" class="social-icon" target="_blank"><img src="../../public/logos/ig.png" class="icon-img"></a>
+                        <a href="https://wa.me/62895383151668" class="social-icon" target="_blank"><img src="../../public/logos/wa.png" class="icon-img"></a>
+                        <a href="https://www.linkedin.com/in/rafi-febrian-suprapto-8a9a42312" class="social-icon" target="_blank"><img src="../../public/logos/linkedin.png" class="icon-img"></a>
                     </div>
                 </div>
 

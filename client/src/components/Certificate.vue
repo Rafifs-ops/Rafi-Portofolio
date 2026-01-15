@@ -1,10 +1,19 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
+const isLoading = ref(false);
+
 // Data Sertifikat
 const certificates = ref([]);
 onMounted(async () => {
-    await fetch('https://rafi-portofolio.onrender.com/api/data/certifications').then(e => e.json()).then(data => certificates.value = data)
+    isLoading.value = true; // Set loading true saat mulai
+    try {
+       await fetch('https://rafi-portofolio.onrender.com/api/data/certifications').then(e => e.json()).then(data => certificates.value = data);
+    } catch (error) {
+        console.error("Gagal mengambil data sertifikat:", error);
+    } finally {
+        isLoading.value = false; // Matikan loading setelah selesai (sukses/gagal)
+    }
 });
 
 // State untuk Modal
@@ -32,7 +41,16 @@ const closeModal = () => {
                 </div>
             </div>
 
-            <div class="row g-4 justify-content-center">
+            <div v-if="isLoading" class="row justify-content-center my-5">
+                <div class="col-auto text-center">
+                    <div class="cyber-spinner spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
+                </div>
+            </div>
+
+            <div v-else class="row g-4 justify-content-center">
                 <div class="col-md-6 col-lg-4" v-for="cert in certificates" :key="cert.id">
                     <div class="cert-card" @click="openModal(cert)">
                         <div class="img-container">
@@ -210,6 +228,20 @@ const closeModal = () => {
 
 .close-btn:hover {
     color: #3795BD;
+}
+
+.cyber-spinner {
+    width: 3rem;
+    height: 3rem;
+    color: #3795BD;
+    /* Warna biru sesuai tema */
+    border-width: 0.25em;
+    filter: drop-shadow(0 0 5px #3795BD);
+    /* Efek glow */
+}
+
+.tracking-wider {
+    letter-spacing: 2px;
 }
 
 /* Responsive adjustment untuk tombol close di mobile */
