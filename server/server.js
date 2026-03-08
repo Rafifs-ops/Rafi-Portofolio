@@ -15,8 +15,8 @@ app.use(express.json()); // Mem-parsing body JSON
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log('✅ MongoDB Connected'))
-.catch(err => console.error('❌ MongoDB Connection Error:', err));
+    .then(() => console.log('✅ MongoDB Connected'))
+    .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // Import Routes
 const dataRoutes = require('./routes/data');
