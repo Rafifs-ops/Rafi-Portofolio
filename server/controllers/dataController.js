@@ -106,3 +106,117 @@ exports.createCertification = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 }
+
+// === Edit functions ===
+
+exports.editSkill = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+        const logo = req.file ? req.file.path : undefined;
+
+        const updateData = {};
+        if (name) updateData.name = name;
+        if (logo) updateData.logo = logo;
+
+        const updatedSkill = await Skill.findByIdAndUpdate(id, updateData, { new: true });
+        if (!updatedSkill) {
+            return res.status(404).json({ message: 'Skill not found' });
+        }
+        res.json(updatedSkill);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+exports.editProject = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, caption, description, link_web, tech_stack } = req.body;
+        const thumb_img = req.file ? req.file.path : undefined;
+
+        const updateData = {};
+        if (title) updateData.title = title;
+        if (caption) updateData.caption = caption;
+        if (description) updateData.description = description;
+        if (link_web) updateData.link_web = link_web;
+
+        if (tech_stack) {
+            try {
+                updateData.tech_stack = JSON.parse(tech_stack);
+            } catch (e) {
+                updateData.tech_stack = Array.isArray(tech_stack) ? tech_stack : [tech_stack];
+            }
+        }
+        if (thumb_img) updateData.thumb_img = thumb_img;
+
+        const updatedProject = await Project.findByIdAndUpdate(id, updateData, { new: true });
+        if (!updatedProject) {
+            return res.status(404).json({ message: 'Project not found' });
+        }
+        res.json(updatedProject);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+exports.editCertification = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title } = req.body;
+        const img = req.file ? req.file.path : undefined;
+
+        const updateData = {};
+        if (title) updateData.title = title;
+        if (img) updateData.img = img;
+
+        const updatedCertification = await Certification.findByIdAndUpdate(id, updateData, { new: true });
+        if (!updatedCertification) {
+            return res.status(404).json({ message: 'Certification not found' });
+        }
+        res.json(updatedCertification);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+// === Delete functions ===
+
+exports.deleteSkill = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedSkill = await Skill.findByIdAndDelete(id);
+        if (!deletedSkill) {
+            return res.status(404).json({ message: 'Skill not found' });
+        }
+        res.json({ message: 'Skill deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+exports.deleteProject = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedProject = await Project.findByIdAndDelete(id);
+        if (!deletedProject) {
+            return res.status(404).json({ message: 'Project not found' });
+        }
+        res.json({ message: 'Project deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+exports.deleteCertification = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedCertification = await Certification.findByIdAndDelete(id);
+        if (!deletedCertification) {
+            return res.status(404).json({ message: 'Certification not found' });
+        }
+        res.json({ message: 'Certification deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}

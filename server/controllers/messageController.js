@@ -18,3 +18,13 @@ exports.sendMessage = async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 }
+
+exports.getMessages = async (req, res) => {
+    try {
+        const messages = await Message.find();
+        res.status(200).json(messages);
+    } catch (err) {
+        console.log(`error: ${err.message}`);
+        res.status(500).json({ message: err.message });
+    }
+}
