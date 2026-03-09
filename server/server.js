@@ -8,7 +8,7 @@ const port = 8080; // Port untuk server
 
 // --- Middleware ---
 const corsOptions = {
-    origin: ['http://localhost:5173', 'https://rafi-portfolio-15.netlify.app']
+    origin: ['http://localhost:5173', 'https://rafi-portfolio-15.netlify.app', 'https://admin-portfolio-rafi.netlify.app']
 };
 app.use(cors(corsOptions));
 app.use(express.json()); // Mem-parsing body JSON
