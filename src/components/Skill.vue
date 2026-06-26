@@ -32,7 +32,7 @@ onMounted(async () => {
         <div class="container">
 
             <div class="row mb-5 text-center">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-down">
                     <h2 class="section-title fw-bold text-white">Skills</h2>
                     <div class="divider mx-auto"></div>
                 </div>
@@ -50,7 +50,7 @@ onMounted(async () => {
             <div v-else class="row justify-content-center g-4">
                 <TransitionGroup name="staggered-fade" appear>
                     <div v-for="(skill, index) in skills" :key="skill.name" v-show="showSkills"
-                        class="col-6 col-md-4 col-lg-3" :style="{ transitionDelay: `${index * 100}ms` }">
+                        class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
                         <div class="skill-card d-flex flex-column align-items-center justify-content-center p-4 h-100">
                             <div class="icon-box mb-3">
                                 <img :src="skill.logo" :alt="skill.name" class="skill-logo">

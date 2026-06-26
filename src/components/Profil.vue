@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // State untuk mengontrol animasi saat mounted
 const showProfile = ref(false);
@@ -93,7 +92,8 @@ onBeforeUnmount(() => {
                         <div class="col-md-4 text-center mb-4 mb-md-0">
                             <div class="image-container">
                                 <img src="../assets/img/fotorafi.jpg" alt="Profile Picture"
-                                    class="profile-img img-fluid">
+                                    class="profile-img img-fluid" data-aos="fade-up" data-aos-duration="1000"
+                                    data-aos-anchor-placement="top-center">
                             </div>
                         </div>
 
@@ -207,7 +207,7 @@ onBeforeUnmount(() => {
 .divider {
     height: 4px;
     width: 60px;
-    background: #2F58CD;
+    background: #ffffff;
     margin: 0 auto 0 auto;
     border-radius: 2px;
 }

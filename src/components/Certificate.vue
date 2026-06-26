@@ -40,7 +40,7 @@ const closeModal = () => {
         <div class="container">
 
             <div class="row mb-5 text-center">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-down">
                     <h2 class="section-title text-white fw-bold">Certifications</h2>
                     <div class="divider mx-auto"></div>
                 </div>
@@ -56,7 +56,7 @@ const closeModal = () => {
             </div>
 
             <div v-else class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4" v-for="cert in certificates" :key="cert.id">
+                <div class="col-md-6 col-lg-4" v-for="(cert, index) in certificates" :key="cert.id" data-aos="zoom-in">
                     <div class="cert-card" @click="openModal(cert)">
                         <div class="img-container">
                             <img :src="cert.img" :alt="cert.title" class="cert-thumb img-fluid">

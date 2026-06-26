@@ -39,7 +39,7 @@ function detailProject(id) {
         <div class="container">
 
             <div class="row mb-5 text-center">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-down">
                     <h2 class="section-title text-white fw-bold">Projects</h2>
                     <div class="divider mx-auto"></div>
                 </div>
@@ -57,7 +57,7 @@ function detailProject(id) {
             <div v-else class="row g-4 justify-content-center">
                 <TransitionGroup name="card-pop">
                     <div class="col-md-6 col-lg-4" v-for="(project, index) in projects" :key="project.id"
-                        v-show="showProjects" :style="{ '--delay': index * 0.2 + 's' }">
+                        v-show="showProjects" :style="{ '--delay': index * 0.2 + 's' }" data-aos="fade-up">
 
                         <div class="project-card h-100 d-flex flex-column">
                             <div class="img-wrapper">
