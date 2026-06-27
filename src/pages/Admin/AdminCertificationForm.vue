@@ -56,29 +56,29 @@ onMounted(async () => {
 
 async function saveCertification() {
     isUploading.value = true
-    
+
     let imageUrl = form.value.img
-    
+
     if (file.value) {
         const fileExt = file.value.name.split('.').pop()
         const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 15)}.${fileExt}`
         const filePath = `certifications_img/${fileName}`
-        
+
         const { error: uploadError } = await supabase.storage
-            .from("rafi's-portfolio-assets")
+            .from("rafis-portfolio-assets")
             .upload(filePath, file.value)
-            
+
         if (uploadError) {
             console.error('Upload error:', uploadError)
             alert('Gagal mengupload gambar: ' + uploadError.message)
             isUploading.value = false
             return
         }
-        
+
         const { data: urlData } = supabase.storage
-            .from("rafi's-portfolio-assets")
+            .from("rafis-portfolio-assets")
             .getPublicUrl(filePath)
-            
+
         imageUrl = urlData.publicUrl
     }
 
@@ -105,12 +105,14 @@ async function saveCertification() {
         <form @submit.prevent="saveCertification" class="bg-white p-4 rounded shadow-sm">
             <div class="mb-3">
                 <label class="form-label fw-semibold">Judul Sertifikasi</label>
-                <input v-model="form.title" type="text" class="form-control" required placeholder="Contoh: AWS Certified" />
+                <input v-model="form.title" type="text" class="form-control" required
+                    placeholder="Contoh: AWS Certified" />
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-semibold">Upload Gambar</label>
-                <input type="file" @change="handleFileUpload" accept="image/*" class="form-control" :required="!isEditing && !form.img" />
+                <input type="file" @change="handleFileUpload" accept="image/*" class="form-control"
+                    :required="!isEditing && !form.img" />
                 <div v-if="previewUrl" class="mt-3">
                     <p class="mb-1 text-muted small">Preview Gambar:</p>
                     <img :src="previewUrl" alt="Preview" class="img-thumbnail" style="max-height: 200px;" />

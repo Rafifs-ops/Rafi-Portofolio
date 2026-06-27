@@ -74,22 +74,22 @@ async function saveProject() {
         const fileExt = file.value.name.split('.').pop()
         const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 15)}.${fileExt}`
         const filePath = `projects_img/${fileName}`
-        
+
         const { error: uploadError } = await supabase.storage
-            .from("rafi's-portfolio-assets")
+            .from("rafis-portfolio-assets")
             .upload(filePath, file.value)
-            
+
         if (uploadError) {
             console.error('Upload error:', uploadError)
             alert('Gagal mengupload thumbnail: ' + uploadError.message)
             isUploading.value = false
             return
         }
-        
+
         const { data: urlData } = supabase.storage
-            .from("rafi's-portfolio-assets")
+            .from("rafis-portfolio-assets")
             .getPublicUrl(filePath)
-            
+
         thumbUrl = urlData.publicUrl
     }
 
@@ -126,7 +126,8 @@ async function saveProject() {
 
             <div class="mb-3">
                 <label class="form-label fw-semibold">Upload Thumbnail</label>
-                <input type="file" @change="handleFileUpload" accept="image/*" class="form-control" :required="!isEditing && !form.thumb_img" />
+                <input type="file" @change="handleFileUpload" accept="image/*" class="form-control"
+                    :required="!isEditing && !form.thumb_img" />
                 <div v-if="previewUrl" class="mt-3">
                     <p class="mb-1 text-muted small">Preview Thumbnail:</p>
                     <img :src="previewUrl" alt="Preview" class="img-thumbnail" style="max-height: 200px;" />
