@@ -70,7 +70,7 @@ onMounted(async () => {
 .skills-wrapper {
     width: 100%;
     position: relative;
-    background: linear-gradient(180deg, #3795BD 0%, #2F58CD 40%, #4E31AA 80%, #3A1078 100%);
+    background: linear-gradient(to bottom, #3A1078 0%, #2F58CD 100%);
     overflow: hidden;
 }
 

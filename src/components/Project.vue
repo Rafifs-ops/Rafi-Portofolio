@@ -97,7 +97,7 @@ function detailProject(id) {
 <style scoped>
 /* 1. Background Section (Melanjutkan flow gradasi gelap) */
 .projects-section {
-    background: linear-gradient(to bottom, #3A1078 0%, #2F58CD 100%);
+    background: linear-gradient(180deg, #3795BD 0%, #2F58CD 40%, #4E31AA 80%, #3A1078 100%);
     position: relative;
     overflow: hidden;
 }

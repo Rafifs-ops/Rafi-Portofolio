@@ -12,8 +12,8 @@ import FooterComp from '@/components/Footer.vue';
     <main>
         <Navbar />
         <Profil />
-        <Skill />
         <Project />
+        <Skill />
         <Certificate />
         <Contact />
         <FooterComp />
