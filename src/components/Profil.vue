@@ -103,7 +103,8 @@ onBeforeUnmount(() => {
                             <div class="divider mb-3"></div>
                             <p class="description lead mb-4">
                                 Undergraduate student of <span class="highlight">Digital Business</span> <br>
-                                at State University of Jakarta
+                                at State University of Jakarta <span class="highlight">|</span> Fullstack Web Developer
+                                <span class="highlight">|</span> AI Engineer
                             </p>
 
                             <div class="d-flex flex-column flex-md-row align-items-center gap-4">
