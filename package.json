@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
+    "@vercel/analytics": "^2.0.1",
     "@vueup/vue-quill": "^1.5.5",
     "aos": "^3.0.0-beta.6",
     "bootstrap": "^5.3.8",
