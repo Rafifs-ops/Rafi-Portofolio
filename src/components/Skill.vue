@@ -38,12 +38,12 @@ onMounted(async () => {
                 </div>
             </div>
 
-            <div v-if="isLoading" class="row justify-content-center my-5">
-                <div class="col-auto text-center">
-                    <div class="cyber-spinner spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+            <div v-if="isLoading" class="row justify-content-center g-4">
+                <div v-for="n in 8" :key="'skeleton-skill-'+n" class="col-6 col-md-4 col-lg-3">
+                    <div class="skill-card skeleton-pulse d-flex flex-column align-items-center justify-content-center p-4 h-100">
+                        <div class="icon-box mb-3 skeleton-circle"></div>
+                        <div class="skeleton-text"></div>
                     </div>
-                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
                 </div>
             </div>
 
@@ -206,5 +206,27 @@ onMounted(async () => {
     .skill-name {
         font-size: 0.9rem;
     }
+}
+
+/* Skeleton Loader */
+.skeleton-circle {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.skeleton-text {
+    height: 16px;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.skeleton-pulse {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 </style>

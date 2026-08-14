@@ -46,12 +46,26 @@ function detailProject(id) {
                 </div>
             </div>
 
-            <div v-if="isLoading" class="row justify-content-center my-5">
-                <div class="col-auto text-center">
-                    <div class="cyber-spinner spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+            <div v-if="isLoading" class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" v-for="n in 3" :key="'skeleton-project-'+n">
+                    <div class="project-card h-100 d-flex flex-column skeleton-pulse">
+                        <div class="img-wrapper skeleton-bg"></div>
+                        <div class="card-content p-4 flex-grow-1 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="skeleton-title mb-3"></div>
+                                <div class="skeleton-text mb-2"></div>
+                                <div class="skeleton-text mb-4 w-75"></div>
+                            </div>
+                            <div>
+                                <div class="stack-container d-flex flex-wrap gap-2 mb-4">
+                                    <div class="skeleton-badge"></div>
+                                    <div class="skeleton-badge"></div>
+                                    <div class="skeleton-badge"></div>
+                                </div>
+                                <div class="skeleton-btn w-100"></div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
                 </div>
             </div>
 
@@ -257,5 +271,41 @@ function detailProject(id) {
 
 .tracking-wider {
     letter-spacing: 2px;
+}
+
+/* 6. Skeleton Loader */
+.skeleton-bg {
+    background: rgba(255, 255, 255, 0.1);
+}
+.skeleton-title {
+    height: 24px;
+    width: 60%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.skeleton-text {
+    height: 14px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.skeleton-badge {
+    height: 28px;
+    width: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+.skeleton-btn {
+    height: 38px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+.skeleton-pulse {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 </style>

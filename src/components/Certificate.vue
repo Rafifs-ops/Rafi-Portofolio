@@ -46,12 +46,14 @@ const closeModal = () => {
                 </div>
             </div>
 
-            <div v-if="isLoading" class="row justify-content-center my-5">
-                <div class="col-auto text-center">
-                    <div class="cyber-spinner spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
+            <div v-if="isLoading" class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" v-for="n in 3" :key="'skeleton-cert-'+n">
+                    <div class="cert-card skeleton-pulse">
+                        <div class="img-container skeleton-bg"></div>
+                        <div class="cert-info p-3 d-flex justify-content-center">
+                            <div class="skeleton-text"></div>
+                        </div>
                     </div>
-                    <p class="text-white mt-3 small opacity-75 tracking-wider">LOADING DATA...</p>
                 </div>
             </div>
 
@@ -276,5 +278,26 @@ const closeModal = () => {
 .modal-fade-leave-from {
     opacity: 1;
     transform: scale(1);
+}
+
+/* Skeleton Loader */
+.skeleton-bg {
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    height: 100%;
+}
+.skeleton-text {
+    height: 16px;
+    width: 70%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.skeleton-pulse {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+@keyframes skeleton-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 </style>
