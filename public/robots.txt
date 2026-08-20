@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /favicon.jpg
 
 Sitemap: https://rafi-portfolio.my.id
